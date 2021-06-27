@@ -1,11 +1,21 @@
 import React from 'react';
-import { View, Text, StatusBar, StyleSheet } from 'react-native';
+import {
+  StatusBar,
+  StyleSheet, Text, View
+} from 'react-native';
 
-export function Header() {
+interface HeaderProps {
+  darkMode: boolean;
+}
+
+export function Header(props: HeaderProps) {
   return (
-    <View style={styles.header}>
+    <View style={[
+      props.darkMode ? 
+      styles.headerDark : 
+      styles.header]}>
       <Text style={styles.headerText}>to.</Text>
-      <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
+      <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold', marginRight: 40 }]}>do</Text>
     </View>
   )
 }
@@ -17,11 +27,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#273FAD',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row'    
   },
   headerText: {
     fontSize: 24,
     color: '#FFF',
-    fontFamily: 'Poppins-Regular',
-  }
+    fontFamily: 'Poppins-Regular',   
+  },
+  headerDark: {
+    paddingTop: StatusBar.currentHeight,
+    paddingBottom: 44,
+    backgroundColor: '#483C67',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
 });
